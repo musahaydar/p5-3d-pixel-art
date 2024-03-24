@@ -4,7 +4,7 @@ html, body {
 }
 
 #p5-container {
-    margin: 0;
+    margin: 20px;
     display: flex;
     
     /* This centers our sketch horizontally. */
