@@ -1,12 +1,15 @@
 let img;
-let scale = 10;
+let scale = 5;
+let stretch = 0.01;
+let outline = false;
 
 function preload() {
     img = loadImage("sprite.png");
 }
 
 function setup() {
-    createCanvas(img.width * scale, img.height * scale, WEBGL);
+    let canvas = createCanvas(img.width * scale, img.height * scale, WEBGL);
+    canvas.parent("p5-container");
     img.loadPixels();
 }
 
@@ -20,12 +23,17 @@ function draw() {
             let idx = (row + (col * img.width)) * 4;
             if (img.pixels[idx + 3] !== 0) {
                 fill(img.pixels[idx], img.pixels[idx + 1], img.pixels[idx + 2]);
-                box(scale, scale, 1);
+                if (outline === false) {
+                    stroke(img.pixels[idx], img.pixels[idx + 1], img.pixels[idx + 2]);
+                }
+                box(scale, scale, mouseX * 0.05);
             }
             translate(scale, 0);
         }
         translate(-scale * img.width, scale);
-    } 
+        rotateX((mouseY - (img.width)) * 0.00002);
+        rotateY((mouseX - (img.height)) * 0.00002);
+    }
     // reset to origin for next iteration
     translate(0, -scale * img.height);
 }
