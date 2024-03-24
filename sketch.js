@@ -22,17 +22,19 @@ function draw() {
         for (let row = 0; row < img.width; row += 1) {
             let idx = (row + (col * img.width)) * 4;
             if (img.pixels[idx + 3] !== 0) {
-                fill(img.pixels[idx], img.pixels[idx + 1], img.pixels[idx + 2]);
+                fill(img.pixels[idx], img.pixels[idx + 1], img.pixels[idx + 2], img.pixels[idx + 3]);
                 if (outline === false) {
-                    stroke(img.pixels[idx], img.pixels[idx + 1], img.pixels[idx + 2]);
+                    stroke(img.pixels[idx], img.pixels[idx + 1], img.pixels[idx + 2], img.pixels[idx + 3]);
                 }
-                box(scale, scale, mouseX * 0.05);
+                push()
+                rotateY(sin(frameCount / 50));
+                box(scale, scale, 20 * sin(frameCount / 100));
+                box(scale, scale, scale);
+                pop()
             }
             translate(scale, 0);
         }
         translate(-scale * img.width, scale);
-        rotateX((mouseY - (img.width)) * 0.00002);
-        rotateY((mouseX - (img.height)) * 0.00002);
     }
     // reset to origin for next iteration
     translate(0, -scale * img.height);
