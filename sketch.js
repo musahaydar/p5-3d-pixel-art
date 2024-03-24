@@ -1,6 +1,6 @@
 let img;
 let scale = 5;
-let stretch = 0.01;
+let stretch = 0.02; 
 let outline = false;
 
 function preload() {
@@ -29,12 +29,14 @@ function draw() {
                 push()
                 rotateY(sin(frameCount / 50));
                 box(scale, scale, 20 * sin(frameCount / 100));
-                box(scale, scale, scale);
+                // box(scale, scale, mouseX * stretch);
                 pop()
             }
             translate(scale, 0);
         }
         translate(-scale * img.width, scale);
+        // rotateX((mouseY - (img.width)) * 0.00002);
+        // rotateY((mouseX - (img.height)) * 0.00002);
     }
     // reset to origin for next iteration
     translate(0, -scale * img.height);
