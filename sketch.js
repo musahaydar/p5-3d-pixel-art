@@ -1,6 +1,5 @@
 let img;
-let cam;
-let scale = 4;
+let scale = 6;
 let depth = 3;
 let outline = false;
 
@@ -13,14 +12,11 @@ function setup() {
     canvas.parent("p5-container");
     img.loadPixels();
     angleMode(DEGREES);
-    cam = createCamera();
-    cam.camera(0, 0, 250, 0, 0, 0, 0, 1, 0);
-    cam.perspective(60, 1, 5, 500);
 }
 
 function draw() {
     // uncomment me for mouse-look control :)
-    // orbitControl();
+    orbitControl(1, 1, 1);
     
     background(255);
     // set initial transform to be top left corner
