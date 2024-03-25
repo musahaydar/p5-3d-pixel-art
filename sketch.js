@@ -30,15 +30,15 @@ function draw() {
                 if (outline === false) {
                     stroke(img.pixels[idx], img.pixels[idx + 1], img.pixels[idx + 2], img.pixels[idx + 3]);
                 }
-                push()
+                push();
                 // rotate about the middle, so we'll consider it the 0th row
-                let rrow = ceil(row - (img.width/2));
+                let rrow = row - (img.width/2);
                 let angle = 25 * sin(frameCount);
                 // TODO: no translation in the x plane means stretching for wider rotations
                 translate(0, 0, tan(angle) * scale * rrow);
                 rotateY(-angle);
                 box(scale, scale, depth * scale);
-                pop()
+                pop();
             }
             translate(scale, 0);
         }
