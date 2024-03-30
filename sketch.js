@@ -11,7 +11,7 @@ let rotate_chkbox;
 //===------ parameters -------===//
 let scale = 5;
 let depth = 2; // pixels, if not using depth map
-let rot_angle = 30; // degrees
+let rot_angle = 90; // degrees
 
 //===----- feature flags -----===//
 let outline = false;
@@ -92,7 +92,10 @@ function draw() {
                 let rrow = row - (img.width/2);
                 let angle = rot_angle * sin(frameCount);
                 if (rotate_chkbox.checked()) {
-                    translate(0, 0, tan(angle) * scale * rrow);
+                    let r = (rrow * scale);
+                    let delta_z = r * sin(angle);
+                    let delta_x = r - (delta_z / tan(angle));
+                    translate(-delta_x, 0, delta_z)
                     rotateY(-angle);
                 }
 
