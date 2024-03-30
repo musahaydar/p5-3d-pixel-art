@@ -11,7 +11,7 @@ let rotate_chkbox;
 //===------ parameters -------===//
 let scale = 5;
 let depth = 2; // pixels, if not using depth map
-let rot_angle = 90; // degrees
+let rot_angle = 35; // degrees
 
 //===----- feature flags -----===//
 let outline = false;
@@ -40,22 +40,19 @@ function setup() {
     let ui_pos_y = img.height * scale * 1.7;
     let incr = 20; // pixels
     spr_select = createSelect();
-    spr_select.position(ui_pos_x, ui_pos_y);
+    spr_select.parent("p5-ui");
     spr_select.option('Moon');
     spr_select.option('Ghost');
     spr_select.option('Moon Depth Map');
     spr_select.selected('Moon');
 
     ui_pos_y += 10;
-    outline_chkbox = createCheckbox(" show outline");
-    outline_chkbox.position(ui_pos_x, ui_pos_y + incr);
-    outline_chkbox.checked(outline);
-    depthmap_chkbox = createCheckbox(" use depthmap");
-    depthmap_chkbox.position(ui_pos_x, ui_pos_y + (incr * 2));
-    depthmap_chkbox.checked(use_depth_map);
-    rotate_chkbox = createCheckbox(" rotate sprite");
-    rotate_chkbox.position(ui_pos_x, ui_pos_y + (incr * 3));
-    rotate_chkbox.checked(rotate);
+    outline_chkbox = createCheckbox(" show outline", outline);
+    outline_chkbox.parent("p5-ui");
+    depthmap_chkbox = createCheckbox(" use depthmap", use_depth_map);
+    depthmap_chkbox.parent("p5-ui");
+    rotate_chkbox = createCheckbox(" rotate sprite", rotate);
+    rotate_chkbox.parent("p5-ui");
 }
 
 function draw() {
