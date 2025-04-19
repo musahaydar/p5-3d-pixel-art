@@ -33,6 +33,9 @@ function setup() {
     let canvas = createCanvas(img.width * scale * 1.5, img.height * scale * 1.5, WEBGL);
     canvas.parent("p5-container");
 
+    // uncomment to make moon spin on webpage load!
+    // setTimeout(set_startup_spin, 200);
+
     angleMode(DEGREES);
 
     // create UI elements
@@ -53,6 +56,17 @@ function setup() {
     depthmap_chkbox.parent("p5-ui");
     rotate_chkbox = createCheckbox(" rotate sprite", rotate);
     rotate_chkbox.parent("p5-ui");
+}
+
+function set_startup_spin() {
+    frameCount = 0;
+    rot_angle = 720;
+    setTimeout(normal_spin, 1500);
+}
+
+function set_normal_spin() {
+    rot_angle = 35;
+    frameCount = 0;
 }
 
 function draw() {
