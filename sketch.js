@@ -34,7 +34,7 @@ function setup() {
     canvas.parent("p5-container");
 
     // uncomment to make moon spin on webpage load!
-    setTimeout(set_startup_spin, 200);
+    // setTimeout(set_startup_spin, 200);
 
     angleMode(DEGREES);
 
