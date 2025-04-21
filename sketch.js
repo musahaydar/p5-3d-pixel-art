@@ -12,11 +12,13 @@ let rotate_chkbox;
 let scale = 5;
 let depth = 2; // pixels, if not using depth map
 let rot_angle = 35; // degrees
+let start_sping_angle = 720;
 
 //===----- feature flags -----===//
 let outline = false;
 let rotate = true;
 let use_depth_map = true;
+let startup_spinning = false;
 
 function preload() {
     moon = loadImage("sprite.png");
@@ -60,8 +62,8 @@ function setup() {
 
 function set_startup_spin() {
     frameCount = 0;
-    rot_angle = 720;
-    setTimeout(set_normal_spin, 1500);
+    rot_angle = start_sping_angle;
+    startup_spinning = true;
 }
 
 function set_normal_spin() {
@@ -121,6 +123,13 @@ function draw() {
             translate(scale, 0);
         }
         translate(-scale * img.width, scale);
+    }
+
+    if (startup_spinning) {
+        if (rot_angle * sin(frameCount) > start_sping_angle - 2) {
+            startup_spinning = false;
+            set_normal_spin();
+        }
     }
 }
 
